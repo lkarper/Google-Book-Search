@@ -11,7 +11,7 @@ function Results(props) {
                 author={book.volumeInfo.authors}
                 description={book.volumeInfo.description}
                 image={book.volumeInfo.imageLinks ? book.volumeInfo.imageLinks.thumbnail : null}
-                book={book}
+                bookProp={book}
                 url={book.accessInfo.webReaderLink}
             />
         );

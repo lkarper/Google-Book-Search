@@ -1,18 +1,16 @@
-import React from 'react';
+import React, { useState } from 'react';
 import './App.css';
 import Header from './Header/Header';
 import Form from './Form/Form';
 import Results from './Results/Results';
 
-class App extends React.Component {
+const App = () => {
 
-  state = {
-    items: [],
-    noResults: null,
-    error: null
-  }
+  const [items, setItems] = useState(null);
+  const [noResults, setNoResults] = useState(null);
+  const [error, setError] = useState(null);
 
-  Search = (term, printType, bookType) => {
+  const search = (term, printType, bookType) => {
     const url = 'https://www.googleapis.com/books/v1/volumes?';
     const key = 'AIzaSyAVpPog1Zv9BRj1Owel7zXII-w55U1W3O8';
     const queryParams = {
@@ -41,43 +39,35 @@ class App extends React.Component {
       })
       .then(data => {
           if (data.totalItems === 0) {
-            this.setState({
-              items: null,
-              noResults: "Looks like no results were found.  Check your input for typos and try again.",
-              error: null
-            })
+            setItems(null);
+            setNoResults("Looks like no results were found.  Check your input for typos and try again.");
+            setError(null);
           } else {
-            this.setState({
-              items: data.items,
-              noResults: null,
-              error: null
-            })
+            setItems(data.items);
+            setNoResults(null);
+            setError(null);
           }
         })
       .catch(error => {
-        this.setState({
-          items: null,
-          noResults: null,
-          error: error.message
-        });
+        setItems(null);
+        setNoResults(null);
+        setError(error.message);
       });
   }
 
-  render() {
-    return (
-      <>
-        <header>
-          <Header />
-          <Form onSearch={this.Search}/>
-        </header>
-        <main>
-          {this.state.error ? <p>Looks like something went wrong: {this.state.error}</p> : ""}
-          {this.state.noResults ? <p>{this.state.noResults}</p> : ""}
-          {this.state.items? <Results books={this.state.items} /> : ""}
-        </main>
-      </>
-    );
-  }
+  return (
+    <>
+      <header>
+        <Header />
+        <Form onSearch={search}/>
+      </header>
+      <main>
+        {error ? <p>Looks like something went wrong: {error}</p> : ""}
+        {noResults ? <p>{noResults}</p> : ""}
+        {items ? <Results books={items} /> : ""}
+      </main>
+    </>
+  );
 }
 
 export default App;
