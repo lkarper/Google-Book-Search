@@ -10,7 +10,7 @@ function Results(props) {
                 title={book.volumeInfo.title}
                 author={book.volumeInfo.authors}
                 description={book.volumeInfo.description}
-                image={book.volumeInfo.imageLinks ? book.volumeInfo.imageLinks.thumbnail: null}
+                image={book.volumeInfo.imageLinks ? book.volumeInfo.imageLinks.thumbnail : null}
                 book={book}
                 url={book.accessInfo.webReaderLink}
             />
