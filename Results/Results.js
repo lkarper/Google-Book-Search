@@ -12,6 +12,7 @@ function Results(props) {
                 description={book.volumeInfo.description}
                 image={book.volumeInfo.imageLinks ? book.volumeInfo.imageLinks.thumbnail: null}
                 book={book}
+                url={book.accessInfo.webReaderLink}
             />
         );
     });

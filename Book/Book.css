@@ -4,6 +4,14 @@
     border-bottom: 2px solid black;
     padding: 10px;
     font-family: 'Raleway', sans-serif;
+    display: flex;
+    flex-direction: column;
+}
+
+img {
+    height: auto;
+    width: 200px;
+    align-self: center;
 }
 
 .book h2 {
@@ -13,4 +21,25 @@
 
 .book:nth-of-type(10) {
     border-bottom: none;
+}
+
+button {
+    width: 300px;
+    margin: 25px;
+}
+
+.book ul {
+    margin-top: 10px;
+}
+
+.book ul li {
+    margin: 5px;
+}
+
+p {
+    line-height: 26px;
+}
+
+a {
+    line-height: 26px;
 }

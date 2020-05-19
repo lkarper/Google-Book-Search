@@ -13,7 +13,7 @@ class Book extends React.Component {
     }
 
     render() {
-        const { title, author, description, book, image } = this.props; 
+        const { title, author, description, book, image, url } = this.props; 
         let bookDetails;
         if (this.state.book && title !== this.state.book.volumeInfo.title) {
             this.setState({
@@ -50,6 +50,7 @@ class Book extends React.Component {
                 {image ? <img src={image} alt={`The book ${title}`} />: <p>Sorry, no image available</p>}
                 <p>{authorHTML}</p>
                 <p>{description ? description : 'No description available'}</p>
+                <a href={url} target="_blank">Read this book on GoogleBooks</a>
                 <button 
                     type="button" 
                     onClick={(e) => {
